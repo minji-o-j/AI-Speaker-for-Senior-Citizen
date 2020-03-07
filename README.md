@@ -1,5 +1,7 @@
 # AI Speaker for Senior Citizen
 # (독거)노인들을 위한 AI 스피커
+![images](https://img.shields.io/github/license/minji-o-j/AI-Speaker-for-Senior-Citizen)
+
 
 [요약](#요약)  
 [개발 기간](#개발-기간)  
