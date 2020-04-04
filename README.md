@@ -22,7 +22,7 @@
 ---
 ### 개발자
 
-- 윤대호([@DaeHoo-Yun](https://github.com/DaeHoo-Yun)), 이혜인(@hyeinlee725), 정민지(@minji-o-j)
+- 윤대호([@DaeHoo-Yun @201810788](https://github.com/201810788)), 이혜인([@hyeinlee725](https://github.com/hyeinlee725)), 정민지([@minji-o-j](https://github.com/minji-o-j))
 ---
 ### 하드웨어
 - 라즈베리파이 B
