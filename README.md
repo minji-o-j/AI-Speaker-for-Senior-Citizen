@@ -76,12 +76,12 @@
 
 - AMK (KT에서 개발한 인공지능 시스템)  
 ![image](https://user-images.githubusercontent.com/45448731/78458570-55fa1180-76ed-11ea-97cf-a6214a699b67.png)  
-> AMK의 작동 원리  
+>> AMK의 작동 원리  
 <br>
 
 ---
 ## 사용 기술
-> ### 음성 분석/합성
+> ### 음성 분석/합성/대화
 ![image](https://user-images.githubusercontent.com/45448731/78458237-c6ebfa00-76ea-11ea-8fdc-e9862c63adf1.png)
 <br>
 1. 사용자 음성 인식
@@ -104,11 +104,38 @@
 
 ![image](https://user-images.githubusercontent.com/45448731/78458882-c1dd7980-76ef-11ea-868b-9caf6ef576df.png)  
 - 크롬에서 `개발자 도구`(F12)를 이용하면 페이지에 뜨는 정보에 대한 소스를 얻을 수 있다.
-- 라즈베리파이는 GPS 기능이 없기 때문에 라즈베리파이가 연결된 __무선 인터넷__ 을 이용하여 사용자의 위치 정보를 알아내기로 하였다.
-- `BeautifulSoup4` 패키지를 이용
-- 같은 영역 안에 들어있는 내용은 `find()`가 아니라 __`findAll()` 함수를 이용__ 하여 __배열처럼 불러온다.__
-  - cf. `find()`는 맨 위에 있는 것 하나만 반환한다.
 
+- 라즈베리파이는 GPS 기능이 없기 때문에 라즈베리파이가 연결된 __무선 인터넷__ 을 이용하여 사용자의 위치 정보를 알아내기로 하였다.
+
+- `BeautifulSoup4` 패키지를 이용
+
+- 같은 영역 안에 들어있는 내용은 `find()`가 아니라 __`findAll()` 함수를 이용__ 하여 __배열처럼 불러온다.__
+
+  - cf. `find()`는 맨 위에 있는 것 하나만 반환한다.
+<br>
+
+> ### 유튜브 재생 API
+- 유튜브 검색 API 설치
+
+- 파이썬에서 Google API를 access할 수 있는 client library 설치
+
+- google-auth를 위해 httplib2 전송 제공하는 library 설치
+
+- URL 변환, 이를 wav파일로 바꿔서 출력하는 패키지 설치
+<br>
+
+![image](https://user-images.githubusercontent.com/45448731/78460462-f820f600-76fb-11ea-9dcd-ed086210d933.png)
+>> 설치 패키지 리스트
+<br>
+
+- 이후 Google Developer에서 개인 키 발급받은 후 파이썬 코드에 입력
+<br>
+
+```Py
+DEVELOPER_KEY = ''  ## Google Developer에서 제공하는 유튜브 API 키 이용
+YOUTUBE_API_SERVICE_NAME = 'youtube' 
+YOUTUBE_API_VERSION = 'v3'
+```
 <br>
 
 ---
@@ -119,6 +146,11 @@
 - 솔루션 제공 순서는 `환경 개선 솔루션` -> `개인 솔루션`  
 
 - 사용자는 스피커가 제공한 솔루션을 실행했음을 __버튼을 누름__ 으로써 스피커에게 알려준다.  
+<br>
+
+![image](https://user-images.githubusercontent.com/45448731/78460118-3b2d9a00-76f9-11ea-81b9-71ec4f728ea4.png)  
+>> 버튼 실행 Flow Chart
+<br>
 
 - `환경 개선 솔루션`을 실행했지만 환경의 개선이 되지 않은 경우 `개인 솔루션`을 제공한다.  
 <br>  
@@ -171,11 +203,57 @@
 - `환경 개선 솔루션`과 `개인 솔루션` 에 동일하게 적용. 
 <br>
 
+> ### 유튜브 재생 알고리즘
+- AI 스피커를 통해 사용자가 `'들려줘'` 또는 `'틀어줘'` 라는 단어가 들어간 말을 하면 그 앞의 단어 전부를 받아와 유튜브에 검색하여 __링크를 반환__.
+
+  - ex) '아이유 Love poem 틀어줘' <--`'아이유 Love poem' 을 검색하여 링크 반환`
+  
+  - `'노래 들려줘'` 또는 `'노래 틀어줘'` 라는 단어가 정확히 일치할 때에는 __'노래' 앞의 단어를 받아와 검색__, 링크 반환
+
+- 반환된 검색 링크중 __최상단에 있는 영상의 제목과 URL을 반환__ 후 패키지를 통해 URL에 있는 영상을 __wav 파일로 변환하여 노래르 재생__.
+
+- __노래 재생 완료__ 혹은 __사용자가 중간에 버튼을 누른 경우__ 에는 재생된 노래의가 완료되었음을 알리고, 다시 __대기 상태로 돌아감__.
+  - 노래를 재생하기 이전에 `환경 개선 솔루션`을 실행한 후 `개인 솔루션` 여부를 판단하고 있었을 상황인 경우, 다시 `개인 솔루션` 판단 상태로 돌아감.
+<br>
+
+```Py
+ elif text.find("틀어줘") >= 0 or text.find("들려줘") >=0 :
+        
+        search_text=''
+        if(text.find("노래 틀어줘")>=0):
+            for i in range (0,text.find("노래 틀어줘")):
+                search_text+=text[i]
+            print(search_text)
+            
+        elif(text.find("노래 들려줘")>=0):
+            for i in range (0,text.find("노래 들려줘")):
+                search_text+=text[i]
+            print(search_text)
+
+        elif(text.find("틀어줘")>=0):
+            for i in range (0,text.find("틀어줘")):
+                search_text+=text[i]
+            print(search_text)
+
+        elif(text.find("들려줘")>=0):
+            for i in range (0,text.find("들려줘")):
+                search_text+=text[i]
+            print(search_text)
+        
+        ####
+        result_url = youtube_search(search_text)
+        play_with_url(result_url)
+        return("유튜브에서 " + search_text + "노래를 재생했어요.")
+```
+
+<br>
+
 ---
 
 ## 솔루션 List
 - 솔루션 List의 이름이 실내와 실외 상황을 고려하여 선택됨.
 - List 내에서 index를 이용해 `환경 개선 솔루션`과 `개인 솔루션`을 나누어 접근
+<br>
 
 ```Py
 ##온도를 낮추는 솔루션
@@ -231,6 +309,7 @@ up_h = ["가습기를 틀어주세요",
 ---
 ## 결과
 ![image](https://user-images.githubusercontent.com/45448731/78459878-323bc900-76f7-11ea-84b5-92c5d42bc846.png)
+<br>
 
 #### 현재 공간의 온도와 습도를 측정하는 모습 - `온도 알려줘/습도 알려줘`  
 - DHT22 온·습도 센서를 사용하여 현재공간의 온도를 측정함  
@@ -243,7 +322,7 @@ up_h = ["가습기를 틀어주세요",
 
 #### 제공 솔루션 알려줌 - `상태 알려줘`
 - 사전에 만들어 놓은 솔루션 배열에서 현재 환경을 개선하는데 적합하다고 판단된 솔루션을 찾아서 제공한다.  
-  - https://youtu.be/ARG9JXJMfzQ    --> `환경 솔루션`  
+  - https://youtu.be/ARG9JXJMfzQ    --> `환경 개선 솔루션`  
   - https://youtu.be/65K3Wm7hLv8    --> `개인 솔루션`  
   - https://youtu.be/myzHxkwULpM    --> `개인 솔루션`  
 
@@ -254,12 +333,23 @@ up_h = ["가습기를 틀어주세요",
 <br>
 
 ---
+## 발전 가능성
+![image](https://user-images.githubusercontent.com/45448731/78460086-e0943e00-76f8-11ea-8f5a-215bc005e407.png)  
+<br>  
+- 현재 '독거노인' 분들을 대상으로 한다는 점에서 스마트 장비(iot, internets of things, 스마트 홈, 스마트 커튼, 스마트 에어컨 등)를 고려하지 않았음.
+
+- 추후에 __iot__ 와 연결한다면 `환경 개선 솔루션`을 말로만 제공해 주는 것이 아니라 __자동으로 환경을 개선하는 기능을 수행할 수 있을 것__ 으로 예상.
+
+- __스마트폰 애플리케이션__ 과 연동한다면 사용자가 피드백을 너무 오랫동안 주지 않았을 시에 __가까운 지인에게 연락을 보내는 기능, 온도가 너무 높을 때 현재 위치와 함께 화재 신고를 하는 기능__ 등 더 많은 기능을 수행할 수 있을 것으로 예상됨.
+<br>
+
+---
 ## 참고 자료
 #### 출처
 > [clova 스피커 사진](https://clova.ai/ko/products/)   
 > [픽토그램](https://www.flaticon.com/)  
 > [내맘대로 AI 메이커스](http://miraes.co.kr/product/detail.html?product_no=16341&cate_no=226&display_group=1)  
-> [구현 코드 출처](https://s3.ap-northeast-2.amazonaws.com/mechaimage/book/KT_AMK_Menual_Python.pdf)  
+> [유튜브 재생 관련 패키지](https://s3.ap-northeast-2.amazonaws.com/mechaimage/book/KT_AMK_Menual_Python.pdf)  
 > [AMK 작동 원리](https://s3.ap-northeast-2.amazonaws.com/mechaimage/book/KT_AMK_Menual_Python.pdf)  
 > [DHT 22](http://techshenzhen.com/goods/goods_view.php?goodsNo=1000000453&inflow=naver&NaPm=ct%3Dk32tfzi8%7Cci%3Ddf4e9237b4c1cee4c66d4f94904db3d41e6a4af8%7Ctr%3Dsls%7Csn%3D991855%7Chk%3D9212be6c4b097ae572428578578c19cb811acc43)  
 > [미세먼지, 초미세먼지 분류표](http://ansan.ekfem.or.kr/archives/8912)  
