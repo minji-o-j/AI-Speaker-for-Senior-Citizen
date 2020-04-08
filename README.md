@@ -3,6 +3,7 @@
 ![images](https://img.shields.io/github/license/minji-o-j/AI-Speaker-for-Senior-Citizen?style=social)
 ![image](https://img.shields.io/badge/language-Python-blueviolet?style=social&logo=Python)
 ![image](https://img.shields.io/badge/Tool-n?style=social&logo=Raspberry-Pi)
+![image](https://img.shields.io/badge/Latest%20Updatee-200404-blueviolet?style=social)
 
 [요약](#요약)  
 [개발 기간](#개발-기간)  
