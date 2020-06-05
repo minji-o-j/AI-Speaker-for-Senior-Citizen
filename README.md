@@ -1,10 +1,10 @@
 # AI Speaker for Senior Citizen
 # (독거)노인들을 위한 AI 스피커
-![images](https://img.shields.io/github/license/minji-o-j/AI-Speaker-for-Senior-Citizen?style=social)
-![image](https://img.shields.io/badge/language-Python-blueviolet?style=social&logo=Python)
-![image](https://img.shields.io/badge/Tool-n?style=social&logo=Raspberry-Pi)
-![image](https://img.shields.io/badge/Latest%20Update-200404-blueviolet?style=social)
-
+![images](https://img.shields.io/github/license/minji-o-j/AI-Speaker-for-Senior-Citizen?style=flat-square)
+![image](https://img.shields.io/badge/language-Python-blueviolet?style=flat-square&logo=Python)
+![image](https://img.shields.io/badge/Tool-000000?style=flat-square&logo=Raspberry-Pi)
+![image](https://img.shields.io/badge/Latest%20Update-200404-9cf?style=flat-square)
+![HitCount](http://hits.dwyl.com/minji-o-j/AI-Speaker-for-Senior-Citizen.svg)  
 
 [요약](#요약)  
 [개발 기간](#개발-기간)  
@@ -16,7 +16,7 @@
 [사용 기술](#사용-기술)  -[음성 분석/합성](#음성-분석합성대화), [웹 크롤링](#웹-크롤링) 등  
 [알고리즘](#알고리즘)  -[온·습도 기준 설정](#온습도-기준-설정), [외부 조건 고려](#외부와의-온습도-차이), [사용자 피드백](#사용자-피드백에-따른-솔루션-변화) 등  
 [솔루션 List](#솔루션-List)  
-[결과](#결과) 
+[결과](#결과)  
 [발전 가능성](#발전-가능성)  
 [참고 자료](#참고-자료)
 
