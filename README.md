@@ -2,7 +2,7 @@
 # (독거)노인들을 위한 AI 스피커
 ![images](https://img.shields.io/github/license/minji-o-j/AI-Speaker-for-Senior-Citizen?style=flat-square)
 ![image](https://img.shields.io/badge/language-Python-blueviolet?style=flat-square&logo=Python)
-![image](https://img.shields.io/badge/Tool-000000?style=flat-square&logo=Raspberry-Pi)
+![image](https://img.shields.io/badge/Tool-라즈베리파이B-bc1142?style=flat-square&logo=Raspberry-Pi)
 ![image](https://img.shields.io/badge/Latest%20Update-200404-9cf?style=flat-square)
 ![HitCount](http://hits.dwyl.com/minji-o-j/AI-Speaker-for-Senior-Citizen.svg)  
 
