@@ -6,7 +6,7 @@
 ![image](https://img.shields.io/badge/Latest%20Update-200404-9cf?style=flat-square)
 ![HitCount](http://hits.dwyl.com/minji-o-j/AI-Speaker-for-Senior-Citizen.svg)  
 
-[시스템 설명](#시스템 설명)  
+[시스템 설명](#시스템-설명)  
 [개발 기간](#개발-기간)  
 [개발자](#개발자)  
 [목적 및 필요성](#목적-및-필요성)  
