@@ -30,7 +30,7 @@
  
  - 그 외 대화 기능, 유튜브 노래 재생 기능 등이 가능하다.
  
- - **[여기](https://www.youtube.com/playlist?list=PL7GlTFtxG6khUv0izh-4z2csl81Knopmp)**에서 시연 영상을 확인 가능하다.
+ - **[여기](https://www.youtube.com/playlist?list=PL7GlTFtxG6khUv0izh-4z2csl81Knopmp)** 에서 시연 영상을 확인 가능하다.
  
  ---
 ## 개발 기간
